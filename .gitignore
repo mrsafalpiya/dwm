@@ -1,0 +1,8 @@
+config.h
+drw.o
+dwm
+dwm.o
+util.o
+/*.diff
+/*.orig
+/*.rej
