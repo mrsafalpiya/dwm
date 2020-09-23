@@ -3,6 +3,7 @@
 /* appearance */
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
+static const int swallowfloating    = 0;        /* 1 means swallow floating windows by default */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[]          = { "JetBrains Mono:pixelsize=14", "JoyPixels:pixelsize=14", "Symbols Nerd Font:pixelsize=14" };
@@ -26,10 +27,18 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class      instance    title       tags mask     isfloating   monitor    scratch key */
-	{ "Gimp",     NULL,       NULL,       0,            1,           -1,        0  },
-	{ "firefox",  NULL,       NULL,       1 << 8,       0,           -1,        0  },
-	{ NULL,       NULL,   "scratchpad",   0,            1,           -1,       's' },
+	/* class      instance    title       tags mask     isfloating   isterminal noswallow monitor    scratch key */
+	{ "st",       NULL,       NULL,       0,            0,           1,          0,         -1,      0},
+	{ "Gimp",     NULL,       NULL,       1 << 6,       0,           1,          0,         -1,      0},
+	{ "Inkscape", NULL,       NULL,       1 << 6,       0,           1,          0,         -1,      0},
+	{ "Brave-browser",NULL,   NULL,       1 << 1,       0,           0,          -1,        -1,      0},
+	{ "ncmpcppterm",NULL,     NULL,       1 << 8,       0,           0,          -1,        -1,      0},
+	{ "newsboatterm",NULL,    NULL,       1 << 7,       0,           0,          -1,        -1,      0},
+	{ NULL,       NULL,       "Event Tester",0,         0,           0,          1,         -1,      0}, /* xev */
+	{ "scratchpad",NULL,      NULL,       0,            1,           1,          0,         -1,      's' },
+	{ "pulsemixercmd",NULL,   NULL,       0,            1,           1,          0,         -1,      'p' },
+	{ "gotopcmd", NULL,       NULL,       0,            1,           1,          0,         -1,      'g' },
+	{ "bccmd",    NULL,       NULL,       0,            1,           1,          0,         -1,      'c' },
 };
 
 /* layout(s) */
