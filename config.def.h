@@ -84,6 +84,7 @@ static const char *htopcmd[] = {"g", "st", "-c", "htopcmd", "-e", "htop", NULL};
 static const char *bccmd[] = {"c", "st", "-c", "bccmd", "-e", "bc", "-lq", NULL};
 
 #include "movestack.c"
+#include <X11/XF86keysym.h>
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
@@ -164,6 +165,48 @@ static Key keys[] = {
 	TAGKEYS(                        XK_0,                      9)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
 	{ MODKEY|ShiftMask,             XK_r,      quit,           {1} }, 
+
+/* External programs */
+	{ Mod1Mask|ControlMask,		XK_p,		spawn,          SHCMD("mpc toggle") },
+	{ Mod1Mask|ShiftMask,		XK_p,		spawn,          SHCMD("mpc stop") },
+	{ Mod1Mask|ControlMask,		XK_comma,	spawn,          SHCMD("mpc prev") },
+	{ Mod1Mask|ControlMask,		XK_period,	spawn,          SHCMD("mpc next") },
+	{ Mod1Mask|ShiftMask,		XK_comma,	spawn,          SHCMD("mpc seek -10") },
+	{ Mod1Mask|ShiftMask,		XK_period,	spawn,          SHCMD("mpc seek +10") },
+	{ Mod1Mask|ControlMask,		XK_minus,	spawn,          SHCMD("pamixer --allow-boost -d 5; dunstify -r 2 \"VOL: $(pamixer --get-volume-human)\"") },
+	{ Mod1Mask|ControlMask,		XK_equal,	spawn,          SHCMD("pamixer --allow-boost -i 5; dunstify -r 2 \"VOL: $(pamixer --get-volume-human)\"") },
+	{ Mod1Mask|ControlMask,		XK_BackSpace,	spawn,          SHCMD("pamixer -t; dunstify -r 2 \"$(pamixer --get-volume-human)\"") },
+	{ Mod1Mask|ShiftMask,		XK_minus,	spawn,          SHCMD("xbacklight -dec 10; dunstify -r 3 \"BRIGHT: $(xbacklight -get | awk '{print int($1)}')\"") },
+	{ Mod1Mask|ShiftMask,		XK_equal,	spawn,          SHCMD("xbacklight -inc 10; dunstify -r 3 \"BRIGHT: $(xbacklight -get | awk '{print int($1)}')\"") },
+
+/* Extra keyboard keys */
+	{ 0, XF86XK_AudioMute,		spawn,		SHCMD("pamixer -t") },
+	{ 0, XF86XK_AudioRaiseVolume,	spawn,		SHCMD("pamixer --allow-boost -i 5") },
+	{ 0, XF86XK_AudioLowerVolume,	spawn,		SHCMD("pamixer --allow-boost -d 5") },
+	{ 0, XF86XK_AudioPrev,		spawn,		SHCMD("mpc prev") },
+	{ 0, XF86XK_AudioNext,		spawn,		SHCMD("mpc next") },
+	{ 0, XF86XK_AudioPause,		spawn,		SHCMD("mpc pause") },
+	{ 0, XF86XK_AudioPlay,		spawn,		SHCMD("mpc play") },
+	{ 0, XF86XK_AudioStop,		spawn,		SHCMD("mpc stop") },
+	{ 0, XF86XK_AudioRewind,	spawn,		SHCMD("mpc seek -10") },
+	{ 0, XF86XK_AudioForward,	spawn,		SHCMD("mpc seek +10") },
+	{ 0, XF86XK_AudioMedia,		spawn,		SHCMD("st -e ncmpcpp") },
+	/* { 0, XF86XK_PowerOff,		spawn,		SHCMD("sysact") }, */
+	{ 0, XF86XK_Calculator,		spawn,		SHCMD("st -e bc -l") },
+	{ 0, XF86XK_Sleep,		spawn,		SHCMD("sudo -A zzz") },
+	{ 0, XF86XK_WWW,		spawn,		SHCMD("$BROWSER") },
+	{ 0, XF86XK_DOS,		spawn,		SHCMD("st") },
+	{ 0, XF86XK_ScreenSaver,	spawn,		SHCMD("lock") },
+	{ 0, XF86XK_TaskPane,		spawn,		SHCMD("st -e htop") },
+	{ 0, XF86XK_Mail,		spawn,		SHCMD("st -e neomutt") },
+	{ 0, XF86XK_MyComputer,		spawn,		SHCMD("st -e lf /") },
+	/* { 0, XF86XK_Battery,		spawn,		SHCMD("") }, */
+	{ 0, XF86XK_Launch1,		spawn,		SHCMD("xset dpms force off") },
+	{ 0, XF86XK_TouchpadToggle,	spawn,		SHCMD("toggletouchpad") },
+	{ 0, XF86XK_TouchpadOff,	spawn,		SHCMD("toggletouchpad on") },
+	{ 0, XF86XK_TouchpadOn,		spawn,		SHCMD("toggletouchpad off") },
+	{ 0, XF86XK_MonBrightnessUp,	spawn,		SHCMD("xbacklight -inc 10") },
+	{ 0, XF86XK_MonBrightnessDown,	spawn,		SHCMD("xbacklight -dec 10") },
 };
 
 /* button definitions */
