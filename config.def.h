@@ -83,6 +83,7 @@ static const char *pulsemixercmd[] = {"p", "st", "-c", "pulsemixercmd", "-e", "p
 static const char *gotopcmd[] = {"g", "st", "-c", "gotopcmd", "-e", "gotop", NULL}; 
 static const char *bccmd[] = {"c", "st", "-c", "bccmd", "-e", "bc", "-lq", NULL};
 
+#include "movestack.c"
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
@@ -114,6 +115,8 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_h,      setcfact,       {.f = +0.25} },
 	{ MODKEY|ShiftMask,             XK_l,      setcfact,       {.f = -0.25} },
 	{ MODKEY|ShiftMask,             XK_o,      setcfact,       {.f =  0.00} },
+	{ MODKEY|ShiftMask,             XK_j,      movestack,      {.i = +1 } },
+	{ MODKEY|ShiftMask,             XK_k,      movestack,      {.i = -1 } },
 	{ MODKEY,                       XK_Return, zoom,           {0} },
 	{ MODKEY,                       XK_Tab,    view,           {0} },
 	{ MODKEY,                       XK_s,      swapfocus,      {.i = -1 } },
