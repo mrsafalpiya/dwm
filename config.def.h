@@ -88,6 +88,9 @@ static Key keys[] = {
 	{ Mod1Mask|ShiftMask,           XK_c,      spawn,          SHCMD("toggleprogram picom") },
 	{ Mod1Mask|ControlMask,	        XK_c,      spawn,          SHCMD("clipmenu") },
 	{ Mod1Mask|ControlMask,	        XK_l,      spawn,          SHCMD("lock") },
+	{ MODKEY,                       XK_BackSpace,              scratchpad_show,{0} },
+	{ MODKEY|ShiftMask,             XK_BackSpace,              scratchpad_hide,{0} },
+	{ MODKEY,                       XK_Escape,                 scratchpad_remove,{0} },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
@@ -124,6 +127,9 @@ static Key keys[] = {
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
+	{ MODKEY,                       XK_minus, scratchpad_show, {0} },
+	{ MODKEY|ShiftMask,             XK_minus, scratchpad_hide, {0} },
+	{ MODKEY,                       XK_equal,scratchpad_remove,{0} },
 };
 
 /* button definitions */
