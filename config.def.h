@@ -65,13 +65,29 @@ static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont,
 static const char *termcmd[]  = { "st", NULL };
 
 /*First arg only serves to match against key in rules*/
-static const char *scratchpadcmd[] = {"s", "st", "-t", "scratchpad", NULL}; 
+static const char *scratchpadcmd[] = {"s", "st", "-c", "scratchpad", "-t", "scratchpad", NULL}; 
+static const char *pulsemixercmd[] = {"p", "st", "-c", "pulsemixercmd", "-e", "pulsemixer", NULL}; 
+static const char *gotopcmd[] = {"g", "st", "-c", "gotopcmd", "-e", "gotop", NULL}; 
+static const char *bccmd[] = {"c", "st", "-c", "bccmd", "-e", "bc", "-lq", NULL};
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_grave,  togglescratch,  {.v = scratchpadcmd } },
+    { MODKEY,                       XK_w,      spawn,          SHCMD("$BROWSER") },
+	{ MODKEY,                       XK_a,      togglescratch,  {.v = pulsemixercmd } },
+	{ MODKEY,                       XK_s,      togglescratch,  {.v = gotopcmd } },
+	{ MODKEY,                       XK_c,      togglescratch,  {.v = bccmd } },
+	{ Mod1Mask|ControlMask,         XK_m,      spawn,          SHCMD("st -c ncmpcppterm -e ncmpcpp") },
+	{ Mod1Mask|ControlMask,	        XK_r,      spawn,          SHCMD("st -c newsboatterm -e newsboat") },
+	{ Mod1Mask|ControlMask,	        XK_u,      spawn,          SHCMD("dmenuunicode") },
+	{ Mod1Mask|ControlMask,	        XK_x,      spawn,          SHCMD("sstocb") },
+	{ Mod1Mask|ControlMask,	        XK_s,      spawn,          SHCMD("sstop") },
+	{ Mod1Mask|ShiftMask,	        XK_x,      spawn,          SHCMD("colorp") },
+	{ Mod1Mask|ShiftMask,           XK_c,      spawn,          SHCMD("toggleprogram picom") },
+	{ Mod1Mask|ControlMask,	        XK_c,      spawn,          SHCMD("clipmenu") },
+	{ Mod1Mask|ControlMask,	        XK_l,      spawn,          SHCMD("lock") },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
