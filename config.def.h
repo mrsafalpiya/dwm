@@ -42,7 +42,7 @@ static const Rule rules[] = {
 	{ NULL,       NULL,       "Event Tester",0,         0,           0,          1,         -1,      0}, /* xev */
 	{ "scratchpad",NULL,      NULL,       0,            1,           1,          0,         -1,      's' },
 	{ "pulsemixercmd",NULL,   NULL,       0,            1,           1,          0,         -1,      'p' },
-	{ "htopcmd",  NULL,       NULL,       0,            1,           1,          0,         -1,      'g' },
+	{ "gotopcmd", NULL,       NULL,       0,            1,           1,          0,         -1,      'g' },
 	{ "bccmd",    NULL,       NULL,       0,            1,           1,          0,         -1,      'c' },
 };
 
@@ -80,7 +80,7 @@ static const char *termcmd[]  = { "st", NULL };
 /*First arg only serves to match against key in rules*/
 static const char *scratchpadcmd[] = {"s", "st", "-c", "scratchpad", "-t", "scratchpad", NULL}; 
 static const char *pulsemixercmd[] = {"p", "st", "-c", "pulsemixercmd", "-e", "pulsemixer", NULL}; 
-static const char *htopcmd[] = {"g", "st", "-c", "htopcmd", "-e", "htop", NULL}; 
+static const char *gotopcmd[] = {"g", "st", "-c", "gotopcmd", "-e", "gotop", NULL}; 
 static const char *bccmd[] = {"c", "st", "-c", "bccmd", "-e", "bc", "-lq", NULL};
 
 #include "movestack.c"
@@ -92,7 +92,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_grave,  togglescratch,  {.v = scratchpadcmd } },
     { MODKEY,                       XK_w,      spawn,          SHCMD("$BROWSER") },
 	{ MODKEY,                       XK_a,      togglescratch,  {.v = pulsemixercmd } },
-	{ MODKEY,                       XK_s,      togglescratch,  {.v = htopcmd } },
+	{ MODKEY,                       XK_s,      togglescratch,  {.v = gotopcmd } },
 	{ MODKEY,                       XK_c,      togglescratch,  {.v = bccmd } },
 	{ Mod1Mask|ControlMask,         XK_m,      spawn,          SHCMD("st -c ncmpcppterm -e ncmpcpp") },
 	{ Mod1Mask|ControlMask,	        XK_r,      spawn,          SHCMD("st -c newsboatterm -e newsboat") },
@@ -195,7 +195,7 @@ static Key keys[] = {
 	{ 0, XF86XK_WWW,		spawn,		SHCMD("$BROWSER") },
 	{ 0, XF86XK_DOS,		spawn,		SHCMD("st") },
 	{ 0, XF86XK_ScreenSaver,	spawn,		SHCMD("lock") },
-	{ 0, XF86XK_TaskPane,		spawn,		SHCMD("st -e htop") },
+	{ 0, XF86XK_TaskPane,		spawn,		SHCMD("st -e gotop") },
 	{ 0, XF86XK_Mail,		spawn,		SHCMD("st -e neomutt") },
 	{ 0, XF86XK_MyComputer,		spawn,		SHCMD("st -e lf /") },
 	/* { 0, XF86XK_Battery,		spawn,		SHCMD("") }, */
