@@ -34,11 +34,12 @@ static const Rule rules[] = {
 	 */
 	/* class      instance    title       tags mask     isfloating   isterminal noswallow monitor    scratch key */
 	{ "st",       NULL,       NULL,       0,            0,           1,          0,         -1,      0},
+	{ "Brave-browser",NULL,   NULL,       1 << 1,       0,           0,          -1,        -1,      0},
+	{ "Viber",  NULL,       NULL,       1 << 5,       0,           0,          -1,        -1,      0},
 	{ "Gimp",     NULL,       NULL,       1 << 6,       0,           1,          0,         -1,      0},
 	{ "Inkscape", NULL,       NULL,       1 << 6,       0,           1,          0,         -1,      0},
-	{ "Brave-browser",NULL,   NULL,       1 << 1,       0,           0,          -1,        -1,      0},
-	{ "ncmpcppterm",NULL,     NULL,       1 << 8,       0,           0,          -1,        -1,      0},
 	{ "newsboatterm",NULL,    NULL,       1 << 7,       0,           0,          -1,        -1,      0},
+	{ "ncmpcppterm",NULL,     NULL,       1 << 8,       0,           0,          -1,        -1,      0},
 	{ NULL,       NULL,       "Event Tester",0,         0,           0,          1,         -1,      0}, /* xev */
 	{ "scratchpad",NULL,      NULL,       0,            1,           1,          0,         -1,      's' },
 	{ "pulsemixercmd",NULL,   NULL,       0,            1,           1,          0,         -1,      'p' },
@@ -151,6 +152,8 @@ static Key keys[] = {
 	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
+	{ MODKEY,                       XK_minus,  shiftviewclients,{ .i = -1 } },
+	{ MODKEY,                       XK_equal,  shiftviewclients,{ .i = +1 } },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
