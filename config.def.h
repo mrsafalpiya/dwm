@@ -85,6 +85,7 @@ static const char *gotopcmd[] = {"g", "st", "-c", "gotopcmd", "-e", "gotop", NUL
 static const char *bccmd[] = {"c", "st", "-c", "bccmd", "-e", "bc", "-lq", NULL};
 
 #include "movestack.c"
+#include "shiftview.c"
 #include <X11/XF86keysym.h>
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -154,6 +155,8 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
 	{ MODKEY,                       XK_minus,  shiftviewclients,{ .i = -1 } },
 	{ MODKEY,                       XK_equal,  shiftviewclients,{ .i = +1 } },
+	{ MODKEY|ControlMask,           XK_minus,  shiftview,      { .i = -1 } },
+	{ MODKEY|ControlMask,           XK_equal,  shiftview,      { .i = +1 } },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
