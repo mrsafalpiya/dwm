@@ -34,7 +34,6 @@ static const Rule rules[] = {
 	 */
 	/* class      instance    title       tags mask     isfloating   isterminal noswallow monitor    scratch key */
 	{ "st",       NULL,       NULL,       0,            0,           1,          0,         -1,      0},
-	{ "Brave-browser",NULL,   NULL,       1 << 1,       0,           0,          -1,        -1,      0},
 	{ "Viber",  NULL,       NULL,       1 << 5,       0,           0,          -1,        -1,      0},
 	{ "Gimp",     NULL,       NULL,       1 << 6,       0,           1,          0,         -1,      0},
 	{ "Inkscape", NULL,       NULL,       1 << 6,       0,           1,          0,         -1,      0},
