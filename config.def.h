@@ -82,7 +82,7 @@ static const char *termcmd[]  = { "st", NULL };
 static const char *scratchpadcmd[] = {"s", "st", "-c", "scratchpad", "-t", "scratchpad", NULL}; 
 static const char *pulsemixercmd[] = {"p", "st", "-c", "pulsemixercmd", "-e", "pulsemixer", NULL}; 
 static const char *gotopcmd[] = {"g", "st", "-c", "gotopcmd", "-e", "gotop", NULL}; 
-static const char *bccmd[] = {"c", "st", "-c", "bccmd", "-e", "bc", "-lq", NULL};
+static const char *bccmd[] = {"c", "st", "-c", "bccmd", "-g", "40x20", "-e", "bc", "-lq", NULL};
 
 #include "movestack.c"
 #include "shiftview.c"
