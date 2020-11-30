@@ -82,7 +82,7 @@ static const char *termcmd[]  = { "st", NULL };
 /*First arg only serves to match against key in rules*/
 static const char *scratchpadcmd[] = {"s", "st", "-c", "scratchpad", "-t", "scratchpad", NULL}; 
 static const char *pulsemixercmd[] = {"p", "st", "-c", "pulsemixercmd", "-e", "pulsemixer", NULL}; 
-static const char *gotopcmd[] = {"g", "st", "-c", "gotopcmd", "-e", "gotop", NULL}; 
+static const char *gotopcmd[] = {"g", "st", "-c", "gotopcmd", "-g", "120x40", "-e", "gotop", NULL}; 
 static const char *bccmd[] = {"c", "st", "-c", "bccmd", "-g", "40x20", "-e", "bc", "-lq", NULL};
 
 #include "movestack.c"
