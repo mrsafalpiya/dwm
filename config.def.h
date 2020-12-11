@@ -94,6 +94,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_grave,  togglescratch,  {.v = scratchpadcmd } },
     { MODKEY,                       XK_w,      spawn,          SHCMD("$BROWSER") },
+    { MODKEY|ShiftMask,             XK_w,      spawn,          SHCMD("qutebrowser") },
 	{ MODKEY,                       XK_a,      togglescratch,  {.v = pulsemixercmd } },
 	{ MODKEY,                       XK_s,      togglescratch,  {.v = gotopcmd } },
 	{ MODKEY,                       XK_c,      togglescratch,  {.v = bccmd } },
