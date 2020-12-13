@@ -18,10 +18,13 @@ static const char col_gray3[]       = "#bbbbbb";
 static const char col_gray4[]       = "#eeeeee";
 static const char col_cyan[]        = "#005577";
 static const char col_selborder[]   = "#45b6fe";
-static const char *colors[][3]      = {
-	/*               fg         bg         border   */
-	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
-	[SchemeSel]  = { col_gray4, col_cyan,  col_selborder  },
+static const char normmarkcolor[]   = "#b53737";	/*border color for marked client*/
+static const char selmarkcolor[]    = "#775577";	/*border color for marked client on focus*/
+
+static const char *colors[][4]      = {
+	/*               fg         bg         border     mark   */
+	[SchemeNorm] = { col_gray3, col_gray1, col_gray2, normmarkcolor },
+	[SchemeSel]  = { col_gray4, col_cyan,  col_selborder,  col_selborder  },
 };
 
 /* tagging */
@@ -164,6 +167,8 @@ static Key keys[] = {
 	TAGKEYS(                        XK_0,                      9)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
 	{ MODKEY|ShiftMask,             XK_r,      quit,           {1} }, 
+    { MODKEY,                       XK_semicolon, togglemark,   {0} },
+    { Mod1Mask,                     XK_Tab,      swapfocus,      {0} },
 
 /* External programs */
 	{ Mod1Mask|ControlMask,		XK_p,		spawn,          SHCMD("mpc toggle") },
