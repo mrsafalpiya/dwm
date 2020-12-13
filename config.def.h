@@ -193,6 +193,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_r,      quit,           {1} }, 
     { MODKEY,                       XK_semicolon,togglemark,   {0} },
     { Mod1Mask,                     XK_Tab,      swapfocus,    {0} },
+    { Mod1Mask|ShiftMask,           XK_Tab,      swapclient,    {0} },
     { MODKEY,                       XK_backslash,focusmaster,  {0} },
 
 /* External programs */

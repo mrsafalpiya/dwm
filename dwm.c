@@ -1035,17 +1035,6 @@ drawbar(Monitor *m)
 	/* 	x = drw_text(drw, x, 0, w, bh, lrpad / 2, focusedmontext, 0); */
 	/* } */
 
-	/* /1* Text if sticky *1/ */
-	/* char isstickytext[10]="[Sticky]"; */
-	/* w = blw = TEXTW(isstickytext); */
-	/* if (m == selmon && m->sel->issticky) { */
-	/* 	drw_setscheme(drw, scheme[SchemeSel]); */
-	/* 	x = drw_text(drw, x, 0, w, bh, lrpad / 2, isstickytext, 0); */
-	/* } else if (m->sel->issticky) { */
-	/* 	drw_setscheme(drw, scheme[SchemeNorm]); */
-	/* 	x = drw_text(drw, x, 0, w, bh, lrpad / 2, isstickytext, 0); */
-	/* } */
-
 	/* Window title */
 	drw_setscheme(drw, scheme[m == selmon ? SchemeSel : SchemeNorm]);
 	if ((w = m->ww - tw - stw - x) > bh) {
