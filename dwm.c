@@ -81,7 +81,7 @@
 
 /* enums */
 enum { CurNormal, CurResize, CurMove, CurLast }; /* cursor */
-enum { SchemeNorm, SchemeSel }; /* color schemes */
+enum { SchemeNorm, SchemeSel, SchemeTagNorm, SchemeTagNormFoc, SchemeTagSel, SchemeTagSelFoc }; /* color schemes */
 enum { NetSupported, NetWMName, NetWMState, NetWMCheck,
        NetSystemTray, NetSystemTrayOP, NetSystemTrayOrientation, NetSystemTrayOrientationHorz,
        NetWMFullscreen, NetActiveWindow, NetWMWindowType,
@@ -979,11 +979,13 @@ drawbar(Monitor *m)
 		stw = getsystraywidth();
 
 	/* draw status first so it can be overdrawn by tags later */
-	if (m == selmon || 1) { /* status is only drawn on selected monitor */
+	if (m == selmon) { /* status is only drawn on selected monitor */
+		drw_setscheme(drw, scheme[SchemeSel]);
+	} else {
 		drw_setscheme(drw, scheme[SchemeNorm]);
-		tw = TEXTW(stext) - lrpad / 2 + 2; /* 2px right padding */
-		drw_text(drw, m->ww - tw - stw, 0, tw, bh, lrpad / 2 - 2, stext, 0);
 	}
+	tw = TEXTW(stext) - lrpad / 2 + 2; /* 2px right padding */
+	drw_text(drw, m->ww - tw - stw, 0, tw, bh, lrpad / 2 - 2, stext, 0);
 
 	resizebarwin(m);
 	for (c = m->clients; c; c = c->next) {
@@ -998,35 +1000,56 @@ drawbar(Monitor *m)
 		continue;
 
 		w = TEXTW(tags[i]);
-		drw_setscheme(drw, scheme[m->tagset[m->seltags] & 1 << i ? SchemeSel : SchemeNorm]);
+		if (m->tagset[m->seltags] & 1 << i && m == selmon) {
+			drw_setscheme(drw, scheme[SchemeTagSelFoc]);
+		} else if (m->tagset[m->seltags] & 1 << i) {
+			drw_setscheme(drw, scheme[SchemeTagSel]); 
+		} else if (m == selmon) {
+			drw_setscheme(drw, scheme[SchemeTagNormFoc]); 
+		} else {
+			drw_setscheme(drw, scheme[SchemeTagNorm]);
+		}
+		/* drw_setscheme(drw, scheme[m->tagset[m->seltags] & 1 << i ? SchemeTagSel : SchemeTagNorm]); */
 		drw_text(drw, x, 0, w, bh, lrpad / 2, tags[i], urg & 1 << i);
 		x += w;
 	}
+
+	drw_setscheme(drw, scheme[m == selmon ? SchemeSel : SchemeNorm]);
 
 	/* ltsymbol and nmaster */
 	char nmasterchar[30];
 	sprintf(nmasterchar, "%s (%d)", m->ltsymbol, m->nmaster);
 
 	w = blw = TEXTW(nmasterchar);
-	drw_setscheme(drw, scheme[m == selmon && m->sel ? SchemeSel : SchemeNorm]);
 	x = drw_text(drw, x, 0, w, bh, lrpad / 2, nmasterchar, 0);
 
-	/* Focused monitor text */
-	char focusedmontext[30]="[Focused]";
-	w = blw = TEXTW(focusedmontext);
-	if (m == selmon) {
-		x = drw_text(drw, x, 0, w, bh, lrpad / 2, focusedmontext, 0);
-	}
+	/* /1* Focused monitor text *1/ */
+	/* char focusedmontext[10]="[Focused]"; */
+	/* w = blw = TEXTW(focusedmontext); */
+	/* if (m == selmon) { */
+	/* 	drw_setscheme(drw, scheme[SchemeFocText]); */
+	/* 	x = drw_text(drw, x, 0, w, bh, lrpad / 2, focusedmontext, 0); */
+	/* } */
+
+	/* /1* Text if sticky *1/ */
+	/* char isstickytext[10]="[Sticky]"; */
+	/* w = blw = TEXTW(isstickytext); */
+	/* if (m == selmon && m->sel->issticky) { */
+	/* 	drw_setscheme(drw, scheme[SchemeSel]); */
+	/* 	x = drw_text(drw, x, 0, w, bh, lrpad / 2, isstickytext, 0); */
+	/* } else if (m->sel->issticky) { */
+	/* 	drw_setscheme(drw, scheme[SchemeNorm]); */
+	/* 	x = drw_text(drw, x, 0, w, bh, lrpad / 2, isstickytext, 0); */
+	/* } */
 
 	/* Window title */
+	drw_setscheme(drw, scheme[m == selmon ? SchemeSel : SchemeNorm]);
 	if ((w = m->ww - tw - stw - x) > bh) {
 		if (m->sel) {
-			drw_setscheme(drw, scheme[m == selmon ? SchemeSel : SchemeNorm]);
 			drw_text(drw, x, 0, w, bh, lrpad / 2, m->sel->name, 0);
 			if (m->sel->isfloating)
 				drw_rect(drw, x + boxs, boxs, boxw, boxw, m->sel->isfixed, 0);
 		} else {
-			drw_setscheme(drw, scheme[SchemeNorm]);
 			drw_rect(drw, x, 0, w, bh, 1, 1);
 		}
 	}

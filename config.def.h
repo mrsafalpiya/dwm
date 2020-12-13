@@ -1,7 +1,7 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static const unsigned int borderpx  = 2;        /* border pixel of windows */
+static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const unsigned int systraypinning = 0;   /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor X */
 static const unsigned int systrayspacing = 2;   /* systray spacing */
@@ -17,14 +17,38 @@ static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
 static const char col_gray4[]       = "#eeeeee";
 static const char col_cyan[]        = "#005577";
-static const char col_selborder[]   = "#45b6fe";
 static const char normmarkcolor[]   = "#b53737";	/*border color for marked client*/
 static const char selmarkcolor[]    = "#775577";	/*border color for marked client on focus*/
 
+static const char col_normfg[]      = "#969896";
+static const char col_normbg[]      = "#373b41";
+static const char col_normborder[]  = "#444444";
+static const char col_selfg[]       = "#c5c8c6";
+static const char col_selbg[]       = "#1d1f21";
+static const char col_selborder[]   = "#ff5959";
+
+// Tag coloscheme
+// Another Monitor non selected tag - SchemeTagNorm
+static const char col_tagnormfg[]   = "#969896";
+static const char col_tagnormbg[]   = "#373b41";
+// Current Monitor non selected tag - SchemeTagNormFoc
+static const char col_tagnormfocfg[]= "#969896";
+static const char col_tagnormfocbg[]= "#1d1f21";
+// Another Monitor selected tag - SchemeTagSel
+static const char col_tagselfg[]    = "#c5c8c6";
+static const char col_tagselbg[]    = "#b55b5b";
+// Current Monitor selected tag - SchemeTagSelFoc
+static const char col_tagselfocfg[] = "#eeeeee";
+static const char col_tagselfocbg[] = "#b53737";
+
 static const char *colors[][4]      = {
-	/*               fg         bg         border     mark   */
-	[SchemeNorm] = { col_gray3, col_gray1, col_gray2, normmarkcolor },
-	[SchemeSel]  = { col_gray4, col_cyan,  col_selborder,  col_selborder  },
+	/*                    fg               bg               border         mark   */
+	[SchemeNorm]      = { col_normfg,      col_normbg,      col_normborder,col_normborder},
+	[SchemeSel]       = { col_selfg,       col_selbg,       col_selborder, col_selborder },
+	[SchemeTagNorm]   = { col_tagnormfg,   col_tagnormbg,   col_selborder, col_normborder},
+	[SchemeTagNormFoc]= { col_tagnormfocfg,col_tagnormfocbg,col_selborder, col_normborder},
+	[SchemeTagSel]    = { col_tagselfg,    col_tagselbg,    col_selborder, col_selborder },
+	[SchemeTagSelFoc] = { col_tagselfocfg, col_tagselfocbg, col_selborder, col_normborder},
 };
 
 /* tagging */
