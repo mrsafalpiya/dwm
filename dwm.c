@@ -1018,7 +1018,11 @@ drawbar(Monitor *m)
 
 	/* ltsymbol and nmaster */
 	char nmasterchar[30];
-	sprintf(nmasterchar, "%s (%d)", m->ltsymbol, m->nmaster);
+	if (m->nmaster != 1) {
+		sprintf(nmasterchar, "%s (%d)", m->ltsymbol, m->nmaster);
+	} else {
+		sprintf(nmasterchar, "%s", m->ltsymbol);
+	}
 
 	w = blw = TEXTW(nmasterchar);
 	x = drw_text(drw, x, 0, w, bh, lrpad / 2, nmasterchar, 0);
