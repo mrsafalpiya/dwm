@@ -263,7 +263,6 @@ static void sigchld(int unused);
 static void sighup(int unused);
 static void sigterm(int unused);
 static void spawn(const Arg *arg);
-static void swapfocus(const Arg *arg);
 static Monitor *systraytomon(Monitor *m);
 static void spawnscratch(const Arg *arg);
 static void tag(const Arg *arg);
@@ -2290,28 +2289,6 @@ void spawnscratch(const Arg *arg)
 		fprintf(stderr, "dwm: execvp %s", ((char **)arg->v)[1]);
 		perror(" failed");
 		exit(EXIT_SUCCESS);
-	}
-}
-
-void
-swapfocus(const Arg *arg)
-{
-	if (!selmon->sel)
-		return;
-	if(selmon->pertag->prevclient[selmon->pertag->curtag] != NULL 
-			&& ISVISIBLE(selmon->pertag->prevclient[selmon->pertag->curtag])){
-		focus(selmon->pertag->prevclient[selmon->pertag->curtag]);
-		restack(selmon->pertag->prevclient[selmon->pertag->curtag]->mon);
-	}
-	else{
-		Client *c = NULL;
-		for (c = selmon->sel->next; c && !ISVISIBLE(c); c = c->next);
-		if (!c)
-			for (c = selmon->clients; c && !ISVISIBLE(c); c = c->next);
-		if (c) {
-			focus(c);
-			restack(selmon);
-		}
 	}
 }
 
