@@ -27,12 +27,12 @@ static const char col_selfg[]       = "#c5c8c6";
 static const char col_selbg[]       = "#1d1f21";
 static const char col_selborder[]   = "#ff5959";
 
-// Tag coloscheme
+// Tag colorscheme
 // Another Monitor non selected tag - SchemeTagNorm
-static const char col_tagnormfg[]   = "#969896";
+static const char col_tagnormfg[]   = "#c5c8c6";
 static const char col_tagnormbg[]   = "#373b41";
 // Current Monitor non selected tag - SchemeTagNormFoc
-static const char col_tagnormfocfg[]= "#969896";
+static const char col_tagnormfocfg[]= "#c5c8c6";
 static const char col_tagnormfocbg[]= "#1d1f21";
 // Another Monitor selected tag - SchemeTagSel
 static const char col_tagselfg[]    = "#c5c8c6";
