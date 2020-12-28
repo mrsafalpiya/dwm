@@ -1027,14 +1027,6 @@ drawbar(Monitor *m)
 	w = blw = TEXTW(nmasterchar);
 	x = drw_text(drw, x, 0, w, bh, lrpad / 2, nmasterchar, 0);
 
-	/* /1* Focused monitor text *1/ */
-	/* char focusedmontext[10]="[Focused]"; */
-	/* w = blw = TEXTW(focusedmontext); */
-	/* if (m == selmon) { */
-	/* 	drw_setscheme(drw, scheme[SchemeFocText]); */
-	/* 	x = drw_text(drw, x, 0, w, bh, lrpad / 2, focusedmontext, 0); */
-	/* } */
-
 	/* Window title */
 	drw_setscheme(drw, scheme[m == selmon ? SchemeSel : SchemeNorm]);
 	if ((w = m->ww - tw - stw - x) > bh) {
