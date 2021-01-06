@@ -67,6 +67,7 @@ static const Rule rules[] = {
 	{ "Inkscape", NULL,       NULL,       1 << 6,       0,           1,          0,         -1,      0},
 	{ "newsboatterm",NULL,    NULL,       1 << 7,       0,           0,          -1,        -1,      0},
 	{ "ncmpcppterm",NULL,     NULL,       1 << 8,       0,           0,          -1,        -1,      0},
+	{ "calcurseterm",NULL,    NULL,       1 << 7,       0,           0,          -1,        -1,      0},
 	{ NULL,       NULL,       "Event Tester",0,         0,           0,          1,         -1,      0}, /* xev */
 	{ "scratchpad",NULL,      NULL,       0,            1,           1,          0,         -1,      's' },
 	{ "pulsemixercmd",NULL,   NULL,       0,            1,           1,          0,         -1,      'p' },
@@ -107,7 +108,7 @@ static const char *dmenucmd[] = { "dmenu_run" };
 static const char *termcmd[]  = { "st", NULL };
 
 /*First arg only serves to match against key in rules*/
-static const char *scratchpadcmd[] = {"s", "st", "-c", "scratchpad", "-t", "scratchpad", "-e", "dvtm", NULL}; 
+static const char *scratchpadcmd[] = {"s", "st", "-c", "scratchpad", "-t", "scratchpad", NULL}; 
 static const char *pulsemixercmd[] = {"p", "st", "-c", "pulsemixercmd", "-e", "pulsemixer", NULL}; 
 static const char *gotopcmd[] = {"g", "st", "-c", "gotopcmd", "-g", "120x40", "-e", "gotop", NULL}; 
 static const char *bccmd[] = {"c", "st", "-c", "bccmd", "-g", "40x20", "-e", "bc", "-lq", NULL};
@@ -126,6 +127,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_s,      togglescratch,  {.v = gotopcmd } },
 	{ MODKEY,                       XK_c,      togglescratch,  {.v = bccmd } },
 	{ Mod1Mask|ControlMask,         XK_m,      spawn,          SHCMD("st -c ncmpcppterm -e ncmpcpp") },
+	{ Mod1Mask|ControlMask,         XK_n,      spawn,          SHCMD("st -c calcurseterm -e calcurse") },
 	{ Mod1Mask|ControlMask,	        XK_r,      spawn,          SHCMD("st -c newsboatterm -e newsboat") },
 	{ Mod1Mask|ControlMask,	        XK_u,      spawn,          SHCMD("dmenuunicode") },
 	{ Mod1Mask|ControlMask,	        XK_x,      spawn,          SHCMD("sstocb") },
