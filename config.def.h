@@ -98,6 +98,8 @@ static const Layout layouts[] = {
 	{ MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
 	{ MODKEY|ShiftMask,             KEY,      tag,            {.ui = 1 << TAG} }, \
 	{ MODKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} },
+#define FOCUSKEYS(KEY,NUM) \
+	{ Mod1Mask,                     KEY,      focusnum,       {.i = NUM} }, \
 
 /* helper for spawning shell commands in the pre dwm-5.0 fashion */
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
@@ -191,6 +193,17 @@ static Key keys[] = {
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
 	TAGKEYS(                        XK_0,                      9)
+	FOCUSKEYS(                      XK_Tab,                   -1)
+	FOCUSKEYS(                      XK_1,                      0)
+	FOCUSKEYS(                      XK_2,                      1)
+	FOCUSKEYS(                      XK_3,                      2)
+	FOCUSKEYS(                      XK_4,                      3)
+	FOCUSKEYS(                      XK_5,                      4)
+	FOCUSKEYS(                      XK_6,                      5)
+	FOCUSKEYS(                      XK_7,                      6)
+	FOCUSKEYS(                      XK_8,                      7)
+	FOCUSKEYS(                      XK_9,                      8)
+	FOCUSKEYS(                      XK_0,                      9)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
 	{ MODKEY|ShiftMask,             XK_r,      quit,           {1} }, 
     { MODKEY,                       XK_semicolon,togglemark,   {0} },
