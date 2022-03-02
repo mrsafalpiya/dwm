@@ -2219,6 +2219,9 @@ tagmon(const Arg *arg)
 {
 	if (!selmon->sel || !mons->next)
 		return;
+	if (selmon->sel->isfullscreen)
+		togglefullscreen(arg);
+
 	sendmon(selmon->sel, dirtomon(arg->i));
 }
 
