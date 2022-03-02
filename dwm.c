@@ -256,6 +256,7 @@ static void tile(Monitor *);
 static void togglebar(const Arg *arg);
 static void togglefloating(const Arg *arg);
 static void togglescratch(const Arg *arg);
+static void toggleprog(const Arg *arg);
 static void toggletag(const Arg *arg);
 static void toggleview(const Arg *arg);
 static void unfocus(Client *c, int setfocus);
@@ -2295,6 +2296,29 @@ togglescratch(const Arg *arg)
 		}
 
 	} else{
+		spawnscratch(arg);
+	}
+}
+
+void
+toggleprog(const Arg *arg)
+{
+	Client *c;
+	unsigned int found = 0;
+
+	for (c = selmon->clients; c && !(found = c->scratchkey == ((char**)arg->v)[0][0]); c = c->next);
+	if (found) {
+		/* Copied from killclient function */
+		if (!sendevent(c->win, wmatom[WMDelete], NoEventMask, wmatom[WMDelete], CurrentTime, 0 , 0, 0)) {
+			XGrabServer(dpy);
+			XSetErrorHandler(xerrordummy);
+			XSetCloseDownMode(dpy, DestroyAll);
+			XKillClient(dpy, selmon->sel->win);
+			XSync(dpy, False);
+			XSetErrorHandler(xerror);
+			XUngrabServer(dpy);
+		}
+	} else {
 		spawnscratch(arg);
 	}
 }

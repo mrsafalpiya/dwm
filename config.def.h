@@ -32,9 +32,10 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor    scratch key */
-	{ "Gimp",     NULL,       NULL,       0,            1,           -1,        0  },
-	{ "firefox",  NULL,       NULL,       1 << 8,       0,           -1,        0  },
 	{ NULL,       "scratchpad",NULL,      0,            1,           -1,       's' },
+	{ NULL,       "pulsemixer",NULL,      0,            1,           -1,       'a' },
+	{ NULL,       "gotop",    NULL,       0,            1,           -1,       's' },
+	{ NULL,       "sysinfo",  NULL,       0,            1,           -1,       'i' },
 };
 
 /* layout(s) */
@@ -68,6 +69,11 @@ static const char *termcmd[]  = { "st", NULL };
 /* First arg only serves to match against key in rules */
 static const char *scratchpadcmd[] = {"s", "st", "-n", "scratchpad", "-g", "84x20+0-0", "-e", "tmux", "new", "-A", "-s", "scratch", NULL}; 
 
+/* Toggle program cmds */
+static const char *tppulsemixercmd[] = { "a", "st", "-n", "pulsemixer", "-g", "62x10-0+0", "-e", "pulsemixer", NULL };
+static const char *tpgotopcmd[] = { "s", "st", "-n", "gotop", "-g", "80x20-0-0", "-e", "gotop", NULL };
+static const char *tpsysinfocmd[] = { "i", "st", "-n", "sysinfo", "-g", "35x4+0+0", "-e", "statusoutput", NULL };
+
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
@@ -76,6 +82,9 @@ static Key keys[] = {
 	{ MODKEY,                       XK_minus, scratchpad_show, {0} },
 	{ MODKEY|ShiftMask,             XK_minus, scratchpad_hide, {0} },
 	{ MODKEY,                       XK_equal,scratchpad_remove,{0} },
+	{ MODKEY,                       XK_a,      toggleprog,     {.v = tppulsemixercmd } },
+	{ MODKEY,                       XK_s,      toggleprog,     {.v = tpgotopcmd } },
+	{ MODKEY,                       XK_Escape, toggleprog,     {.v = tpsysinfocmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
