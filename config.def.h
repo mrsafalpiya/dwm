@@ -34,7 +34,7 @@ static const Rule rules[] = {
 	/* class      instance    title       tags mask     isfloating   monitor    scratch key */
 	{ "Gimp",     NULL,       NULL,       0,            1,           -1,        0  },
 	{ "firefox",  NULL,       NULL,       1 << 8,       0,           -1,        0  },
-	{ NULL,       NULL,   "scratchpad",   0,            1,           -1,       's' },
+	{ NULL,       "scratchpad",NULL,      0,            1,           -1,       's' },
 };
 
 /* layout(s) */
@@ -65,8 +65,8 @@ static const Layout layouts[] = {
 static const char *dmenucmd[] = { "dmenu_run", NULL };
 static const char *termcmd[]  = { "st", NULL };
 
-/*First arg only serves to match against key in rules*/
-static const char *scratchpadcmd[] = {"s", "st", "-t", "scratchpad", NULL}; 
+/* First arg only serves to match against key in rules */
+static const char *scratchpadcmd[] = {"s", "st", "-n", "scratchpad", "-g", "84x20+0-0", "-e", "tmux", "new", "-A", "-s", "scratch", NULL}; 
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
