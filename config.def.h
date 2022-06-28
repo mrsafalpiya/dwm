@@ -10,7 +10,7 @@ static const int systraypinningfailfirst = 1;   /* 1: if pinning fails, display 
 static const int showsystray        = 1;        /* 0 means no systray */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "Terminus (TTF):pixelsize=16" };
+static const char *fonts[]          = { "Terminus:pixelsize=16", "Noto Color Emoji:pixelsize=14" };
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
@@ -82,9 +82,9 @@ static Key keys[] = {
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_grave,  togglescratch,  {.v = scratchpadcmd } },
-	{ MODKEY,                       XK_minus, scratchpad_show, {0} },
-	{ MODKEY|ShiftMask,             XK_minus, scratchpad_hide, {0} },
-	{ MODKEY,                       XK_equal,scratchpad_remove,{0} },
+	{ MODKEY,                       XK_minus,  scratchpad_show,{0} },
+	{ MODKEY|ShiftMask,             XK_minus,  scratchpad_hide,{0} },
+	{ MODKEY,                       XK_equal,  scratchpad_remove,{0} },
 	{ MODKEY,                       XK_a,      toggleprog,     {.v = tppulsemixercmd } },
 	{ MODKEY,                       XK_s,      toggleprog,     {.v = tpgotopcmd } },
 	{ MODKEY,                       XK_Escape, toggleprog,     {.v = tpsysinfocmd } },
