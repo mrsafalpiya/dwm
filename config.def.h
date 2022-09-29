@@ -38,7 +38,7 @@ static const Rule rules[] = {
 	{ NULL,       "scratchpad",NULL,      0,            1,           -1,       's' },
 	{ NULL,       "pulsemixer",NULL,      0,            1,           -1,       'a' },
 	{ NULL,       "gotop",    NULL,       0,            1,           -1,       't' },
-	{ NULL,       "sysinfo",  NULL,       0,            1,           -1,       'i' },
+	{ NULL,       "spsysinfo",NULL,       0,            1,           -1,       'i' },
 };
 
 /* layout(s) */
@@ -75,7 +75,7 @@ static const char *scratchpadcmd[] = {"s", "st", "-n", "scratchpad", "-g", "84x2
 /* Toggle program cmds */
 static const char *tppulsemixercmd[] = { "a", "st", "-n", "pulsemixer", "-g", "62x10-0+0", "-e", "pulsemixer", NULL };
 static const char *tpgotopcmd[] = { "t", "st", "-n", "gotop", "-g", "80x20-0-0", "-e", "gotop", NULL };
-static const char *tpsysinfocmd[] = { "i", "st", "-n", "sysinfo", "-g", "35x4+0+0", "-e", "statusoutput", NULL };
+static const char *tpsysinfocmd[] = { "i", "spsysinfo", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
