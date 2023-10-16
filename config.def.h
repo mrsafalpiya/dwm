@@ -109,6 +109,8 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_h,      setcfact,       {.f = +0.25} },
 	{ MODKEY|ShiftMask,             XK_l,      setcfact,       {.f = -0.25} },
 	{ MODKEY|ShiftMask,             XK_o,      setcfact,       {.f =  0.00} },
+	{ MODKEY|ControlMask,           XK_minus,  spawn,          SHCMD("transset-df -a --dec .1") },
+	{ MODKEY|ControlMask,           XK_equal,  spawn,          SHCMD("transset-df -a --inc .1") },
 	{ MODKEY,                       XK_Return, zoom,           {0} },
 	{ MODKEY,                       XK_Tab,    view,           {0} },
 	{ MODKEY|ShiftMask,             XK_c,      killclient,     {0} },
