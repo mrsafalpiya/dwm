@@ -43,7 +43,6 @@ static const Rule rules[] = {
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor    scratch key */
 	{ "ncmpcppterm",NULL,     NULL,       1 << 8,       0,           -1,        0  },
-	{ "Google-chrome",NULL,   NULL,       1 << 7,       0,           -1,        0  },
 	{ "flameshot",NULL,       NULL,       0,            1,           -1,        0  },
 	{ NULL,       "scratchpad",NULL,      0,            1,           -1,       's' },
 	{ NULL,       "pulsemixer",NULL,      0,            1,           -1,       'a' },
