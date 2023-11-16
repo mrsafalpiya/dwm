@@ -3302,7 +3302,8 @@ shiftviewclients(const Arg *arg)
 	unsigned int tagmask = 0;
 
 	for (c = selmon->clients; c; c = c->next)
-		tagmask = tagmask | c->tags;
+		if (!c->issticky)
+			tagmask = tagmask | c->tags;
 
 	shifted.ui = selmon->tagset[selmon->seltags];
 	if (arg->i > 0) // left circular shift
