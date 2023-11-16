@@ -297,7 +297,7 @@ static int xerror(Display *dpy, XErrorEvent *ee);
 static int xerrordummy(Display *dpy, XErrorEvent *ee);
 static int xerrorstart(Display *dpy, XErrorEvent *ee);
 static void zoom(const Arg *arg);
-static void shiftview(const Arg *arg);
+static void shiftviewclients(const Arg *arg);
 static void swaptags(const Arg *arg);
 void drawTab(int nwins, int first, Monitor *m);
 void altTabStart(const Arg *arg);
@@ -3294,22 +3294,27 @@ swaptags(const Arg *arg)
 	arrange(selmon);
 }
 
-/** Function to shift the current view to the left/right
- *
- * @param: "arg->i" stores the number of tags to shift right (positive value)
- *          or left (negative value)
- */
 void
-shiftview(const Arg *arg) {
+shiftviewclients(const Arg *arg)
+{
 	Arg shifted;
+	Client *c;
+	unsigned int tagmask = 0;
 
-	if(arg->i > 0) // left circular shift
-		shifted.ui = (selmon->tagset[selmon->seltags] << arg->i)
-		   | (selmon->tagset[selmon->seltags] >> (LENGTH(tags) - arg->i));
+	for (c = selmon->clients; c; c = c->next)
+		tagmask = tagmask | c->tags;
 
+	shifted.ui = selmon->tagset[selmon->seltags];
+	if (arg->i > 0) // left circular shift
+		do {
+			shifted.ui = (shifted.ui << arg->i)
+			   | (shifted.ui >> (LENGTH(tags) - arg->i));
+		} while (tagmask && !(shifted.ui & tagmask));
 	else // right circular shift
-		shifted.ui = selmon->tagset[selmon->seltags] >> (- arg->i)
-		   | selmon->tagset[selmon->seltags] << (LENGTH(tags) + arg->i);
+		do {
+			shifted.ui = (shifted.ui >> (- arg->i)
+			   | shifted.ui << (LENGTH(tags) + arg->i));
+		} while (tagmask && !(shifted.ui & tagmask));
 
 	view(&shifted);
 }
