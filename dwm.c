@@ -2433,6 +2433,7 @@ altTabStart(const Arg *arg)
 		m->nTabs = 0;
 		for(c = m->clients; c; c = c->next) { /* count clients */
 			if(!ISVISIBLE(c)) continue;
+			if (c->issticky) continue;
 			/* if (HIDDEN(c)) continue; uncomment if you're using awesomebar patch */
 
 			++m->nTabs;
@@ -2444,6 +2445,7 @@ altTabStart(const Arg *arg)
 			int listIndex = 0;
 			for(c = m->stack; c; c = c->snext) { /* add clients to the list */
 				if(!ISVISIBLE(c)) continue;
+				if (c->issticky) continue;
 				/* if (HIDDEN(c)) continue; uncomment if you're using awesomebar patch */
 
 				m->altsnext[listIndex++] = c;
