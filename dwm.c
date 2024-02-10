@@ -1033,8 +1033,8 @@ focusstack(const Arg *arg)
 		if (!c)
 			for (c = selmon->clients; c && (!ISVISIBLE(c) || c->issticky); c = c->next);
 	} else {
-		for (i = selmon->clients; i != selmon->sel && !i->issticky; i = i->next)
-			if (ISVISIBLE(i))
+		for (i = selmon->clients; i != selmon->sel; i = i->next)
+			if (ISVISIBLE(i) && !i->issticky)
 				c = i;
 		if (!c)
 			for (; i; i = i->next)
