@@ -2227,7 +2227,11 @@ showhide(Client *c)
 	} else {
 		/* hide clients bottom up */
 		showhide(c->snext);
-		XMoveWindow(dpy, c->win, WIDTH(c) * -2, c->y);
+		if (selmon->tagset[selmon->seltags] >= c->tags) {
+			XMoveWindow(dpy, c->win, (-selmon->mw) + c->x, c->y);
+		} else {
+			XMoveWindow(dpy, c->win, (selmon->mw) + c->x, c->y);
+		}
 	}
 }
 
